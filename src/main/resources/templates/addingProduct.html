@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>AddingNewProduct</title>
@@ -11,7 +11,11 @@
 <form action="/addProduct">
     Product name:<input id="name" name="name">
     <br/>
-    product unit:
+    <div th:each="productUnit : ${T(com.purchasingcooperative.purchasingCooperative.product.ProductUnit).values()}">
+<!--    product unit:<input type="radio" name="productUnit" th:id="${{productUnit}}" th:value="${{productUnit}}" th:field="*{productUnit}"/>-->
+    product unit:<input type="radio" name="productUnit" th:id="${{productUnit}}" th:value="${{productUnit}}" />
+    <label th:for="${{productUnit}}" th:text="${{productUnit}}">Types</label>
+    </div>
     <br/>
     <input type="submit" value="Add new product">
 </form>

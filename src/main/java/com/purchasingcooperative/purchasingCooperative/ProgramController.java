@@ -4,6 +4,7 @@ import com.purchasingcooperative.purchasingCooperative.product.ProductService;
 import com.purchasingcooperative.purchasingCooperative.product.ProductUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProgramController {
 
     private final ProductService service;
+
 
     @Autowired
     public ProgramController(ProductService service) {
@@ -25,10 +27,14 @@ public class ProgramController {
     @GetMapping("/addProduct")
     public String addProduct(
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "unit", required = false) ProductUnit unit
+            @RequestParam(value = "unit", required = false) ProductUnit productUnit
+            //,
+            //Model model
     ) {
-        if(name != null && unit != null){
-            service.addProduct(name,unit);
+        //model.addAttribute("productUnit" ,productUnit);
+        System.out.println("Name" + name + " " + productUnit);
+        if (name != null && productUnit != null) {
+            service.addProduct(name, productUnit);
         }
         return "addingProduct";
     }
