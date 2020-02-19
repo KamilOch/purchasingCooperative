@@ -27,12 +27,9 @@ public class ProgramController {
     @GetMapping("/addProduct")
     public String addProduct(
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "unit", required = false) ProductUnit productUnit
-            //,
-            //Model model
+            @RequestParam(value = "productUnit", required = false) ProductUnit productUnit
+
     ) {
-        //model.addAttribute("productUnit" ,productUnit);
-        System.out.println("Name" + name + " " + productUnit);
         if (name != null && productUnit != null) {
             service.addProduct(name, productUnit);
         }

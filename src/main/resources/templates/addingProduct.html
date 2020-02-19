@@ -12,7 +12,6 @@
     Product name:<input id="name" name="name">
     <br/>
     <div th:each="productUnit : ${T(com.purchasingcooperative.purchasingCooperative.product.ProductUnit).values()}">
-<!--    product unit:<input type="radio" name="productUnit" th:id="${{productUnit}}" th:value="${{productUnit}}" th:field="*{productUnit}"/>-->
     product unit:<input type="radio" name="productUnit" th:id="${{productUnit}}" th:value="${{productUnit}}" />
     <label th:for="${{productUnit}}" th:text="${{productUnit}}">Types</label>
     </div>
