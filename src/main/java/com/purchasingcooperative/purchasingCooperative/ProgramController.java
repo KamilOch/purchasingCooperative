@@ -35,4 +35,12 @@ public class ProgramController {
         }
         return "addingProduct";
     }
+
+    @GetMapping("/products")
+    public String products(
+            Model model
+    ) {
+        model.addAttribute("products", service.getAllProducts());
+        return "products";
+    }
 }

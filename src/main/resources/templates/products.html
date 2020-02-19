@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Products</title>
+</head>
+<body>
+
+<h1>Products</h1>
+
+<table>
+    <thead>
+    <th>Name</th>
+    <th>Unit</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="product : ${products}">
+
+        <td><span th:text="${product.name}">name</span></td>
+        <td><span th:text="${product.productUnit}">unit</span></td>
+
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<form action="/">
+    <input type="submit" value="Go to start page">
+</form>
+<br/>
+<form action="/addProduct">
+    <input type="submit" value="add new product">
+</form>
+
+
+
+</body>
+</html>
