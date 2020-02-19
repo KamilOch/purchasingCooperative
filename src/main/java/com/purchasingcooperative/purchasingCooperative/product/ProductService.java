@@ -16,12 +16,21 @@ public class ProductService {
         this.repository = repository;
     }
 
-    public void addProduct(String name, ProductUnit unit){
+    public void addProduct(String name, ProductUnit unit) {
         ProductEntity newProduct = ProductEntity.builder().name(name).productUnit(unit).build();
         repository.save(newProduct);
     }
 
     public List<ProductEntity> getAllProducts() {
-        return repository.findAll().stream().map(it -> ProductEntity.builder().name(it.getName()).productUnit(it.getProductUnit()).build()).collect(Collectors.toList());
+        return repository.findAll().stream().map(it -> ProductEntity.builder().id(it.getId()).name(it.getName()).productUnit(it.getProductUnit()).build()).collect(Collectors.toList());
+    }
+
+    public void deleteProduct(long id) {
+        ProductEntity deletedProduct = findById(id);
+        repository.delete(deletedProduct);
+    }
+
+    private ProductEntity findById(long id) {
+        return repository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 }
