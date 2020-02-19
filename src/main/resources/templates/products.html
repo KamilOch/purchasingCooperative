@@ -21,6 +21,13 @@
         <td><span th:text="${product.productUnit}">unit</span></td>
 
         <td>
+            <form th:action="@{/editProduct/{id}(id=${product.id})}" th:object="${product}">
+                <input type="hidden" field="${product}">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+
+        <td>
             <form th:action="@{/deleteProduct/{id}(id=${product.id})}" th:object="${product}">
                 <input type="hidden" field="${product}">
                 <input type="submit" value="Delete">

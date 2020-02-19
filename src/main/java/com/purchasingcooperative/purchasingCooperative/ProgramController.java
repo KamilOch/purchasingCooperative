@@ -53,5 +53,24 @@ public class ProgramController {
         return "redirect:/products";
     }
 
+    @GetMapping("/editProduct/{id}")
+    public String editProductById(
+            @PathVariable long id,
+            Model model
+    ) {
+        model.addAttribute("product", service.findById(id));
+        return "editingProduct";
+    }
+
+    @GetMapping("/saveEditedProduct")
+    public String saveEditedProduct(
+            @RequestParam(value = "id", required = false) long id,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "productUnit", required = false) ProductUnit productUnit
+    ) {
+        service.editProduct(id,name,productUnit);
+        return "redirect:/products";
+    }
+
 
 }

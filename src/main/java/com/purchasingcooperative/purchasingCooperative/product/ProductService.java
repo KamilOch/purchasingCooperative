@@ -30,7 +30,14 @@ public class ProductService {
         repository.delete(deletedProduct);
     }
 
-    private ProductEntity findById(long id) {
+    public ProductEntity findById(long id) {
         return repository.findById(id).orElseThrow(IllegalArgumentException::new);
+    }
+
+    public void editProduct(long id, String name, ProductUnit productUnit) {
+        ProductEntity editedProduct = findById(id);
+        editedProduct.setName(name);
+        editedProduct.setProductUnit(productUnit);
+        repository.save(editedProduct);
     }
 }
