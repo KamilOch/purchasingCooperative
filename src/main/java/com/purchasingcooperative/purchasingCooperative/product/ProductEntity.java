@@ -1,5 +1,7 @@
 package com.purchasingcooperative.purchasingCooperative.product;
 
+import com.purchasingcooperative.purchasingCooperative.supplier.SupplierEntity;
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,4 +29,11 @@ public class ProductEntity {
     @Enumerated(EnumType.STRING)
     private ProductUnit productUnit;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_id", insertable = false, updatable = false,nullable = false)
+    private SupplierEntity supplier;
+
+    @NotNull
+    @Column(name="supplier_id" ,unique = true)
+    private long supplierId;
 }
