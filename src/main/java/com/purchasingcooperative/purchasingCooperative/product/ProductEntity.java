@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Builder
 @Data
@@ -36,4 +37,8 @@ public class ProductEntity {
     @NotNull
     @Column(name="supplier_id" ,unique = true)
     private long supplierId;
+
+    @Column(name="price")
+    private BigDecimal price;
+
 }

@@ -1,5 +1,6 @@
 package com.purchasingcooperative.purchasingCooperative.product;
 
+import com.purchasingcooperative.purchasingCooperative.supplier.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,24 +8,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
+
 @Controller
 public class ProductController {
 
     private final ProductService service;
+    private final SupplierService supplierService;
 
     @Autowired
-    public ProductController(ProductService service) {
+    public ProductController(ProductService service, SupplierService supplierService) {
         this.service = service;
+        this.supplierService = supplierService;
     }
 
     @GetMapping("/addProduct")
     public String addProduct(
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "productUnit", required = false) ProductUnit productUnit
+            @RequestParam(value = "productUnit", required = false) ProductUnit productUnit,
+            @RequestParam(value = "supplierId", required = false) Long supplierId,
+            @RequestParam(value = "price", required = false) BigDecimal price,
+            Model model
 
     ) {
+        model.addAttribute("suppliers", supplierService.getAllSuppliers());
         if (name != null && productUnit != null) {
-            service.addProduct(name, productUnit);
+            service.addProduct(name, productUnit, supplierId, price);
         }
         return "addingProduct";
     }

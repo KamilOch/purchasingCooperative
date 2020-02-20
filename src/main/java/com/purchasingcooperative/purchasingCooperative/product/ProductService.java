@@ -3,6 +3,7 @@ package com.purchasingcooperative.purchasingCooperative.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,13 +17,24 @@ public class ProductService {
         this.repository = repository;
     }
 
-    public void addProduct(String name, ProductUnit unit) {
-        ProductEntity newProduct = ProductEntity.builder().name(name).productUnit(unit).build();
+    public void addProduct(String name, ProductUnit unit, long supplierId, BigDecimal price) {
+        ProductEntity newProduct = ProductEntity.builder()
+                .name(name)
+                .productUnit(unit)
+                .supplierId(supplierId)
+                .price(price)
+                .build();
         repository.save(newProduct);
     }
 
     public List<ProductEntity> getAllProducts() {
-        return repository.findAll().stream().map(it -> ProductEntity.builder().id(it.getId()).name(it.getName()).productUnit(it.getProductUnit()).build()).collect(Collectors.toList());
+        return repository.findAll().stream()
+                .map(it -> ProductEntity.builder()
+                        .id(it.getId())
+                        .name(it.getName())
+                        .productUnit(it.getProductUnit())
+                        .build())
+                .collect(Collectors.toList());
     }
 
     public void deleteProduct(long id) {
