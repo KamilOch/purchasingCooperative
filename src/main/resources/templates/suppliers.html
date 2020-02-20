@@ -17,6 +17,21 @@
     <tr th:each="supplier : ${suppliers}">
         <td><span th:text="${supplier.name}">name</span></td>
 
+        <td>
+            <form th:action="@{/editSupplier/{id}(id=${supplier.id})}" th:object="${supplier}">
+                <input type="hidden" field="${supplier}">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+
+
+        <td>
+            <form th:action="@{/deleteSupplier/{id}(id=${supplier.id})}" th:object="${supplier}">
+            <input type="hidden" field="${supplier}">
+            <input type="submit" value="Delete">
+            </form>
+        </td>
+
     </tr>
     </tbody>
 </table>

@@ -21,9 +21,23 @@ public class SupplierService {
         repository.save(newSupplier);
     }
 
-    public List<SupplierEntity> getAllSuppliers(){
+    public List<SupplierEntity> getAllSuppliers() {
         return repository.findAll().stream().map(it ->
                 SupplierEntity.builder().id(it.getId()).name(it.getName()).build()).collect(Collectors.toList());
     }
 
+    public SupplierEntity findById(long id) {
+        return repository.findById(id).orElseThrow(IllegalArgumentException::new);
+    }
+
+    public void deleteSupplier(long id){
+        SupplierEntity deletedSupplier = findById(id);
+        repository.delete(deletedSupplier);
+    }
+
+    public void editSupplier(long id, String name) {
+        SupplierEntity editedSupplier =findById(id);
+        editedSupplier.setName(name);
+        repository.save(editedSupplier);
+    }
 }

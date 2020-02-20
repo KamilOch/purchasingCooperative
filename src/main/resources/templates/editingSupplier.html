@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>EditingSupplier</title>
+</head>
+<body>
+
+<h1>Editing supplier</h1>
+<br/>
+<form action="/saveEditedSupplier">
+    <input type="hidden" name="id" th:value="${supplier.id}">
+    <p>New supplier name:<input id="name" name="name" th:value="${supplier.name}"><p/>
+    <input type="submit" value="Confirm">
+</form>
+
+<br/>
+<form action="/">
+    <input type="submit" value="go to start page">
+</form>
+
+<br/>
+<form action="/suppliers">
+    <input type="submit" value="Go to suppliers list">
+</form>
+
+</body>
+</html>
