@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Suppliers</title>
+</head>
+<body>
+
+<h1>Suppliers</h1>
+
+<table>
+    <thead>
+    <th>Name</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="supplier : ${suppliers}">
+        <td><span th:text="${supplier.name}">name</span></td>
+
+    </tr>
+    </tbody>
+</table>
+
+<form action="/">
+    <input type="submit" value="go to start page">
+</form>
+<br/>
+<form action="/addSupplier">
+    <input type="submit" value="add new supplier">
+</form>
+
+</body>
+</html>
