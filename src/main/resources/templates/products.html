@@ -11,14 +11,18 @@
 <table>
     <thead>
     <th>Name</th>
+    <th>Price</th>
     <th>Unit</th>
+    <th>Supplier</th>
     </thead>
 
     <tbody>
     <tr th:each="product : ${products}">
 
         <td><span th:text="${product.name}">name</span></td>
+        <td><span th:text="${product.price}">price</span></td>
         <td><span th:text="${product.productUnit}">unit</span></td>
+        <td><span th:text="${product.supplierId}">supplier</span></td>
 
         <td>
             <form th:action="@{/editProduct/{id}(id=${product.id})}" th:object="${product}">
