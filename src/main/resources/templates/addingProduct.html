@@ -14,17 +14,16 @@
     Product price<input id="price" name="price">
     <br/>
 
+    <div th:each="productUnit : ${T(com.purchasingcooperative.purchasingCooperative.product.ProductUnit).values()}">
+        product unit:<input type="radio" name="productUnit" th:id="${{productUnit}}" th:value="${{productUnit}}" />
+        <label th:for="${{productUnit}}" th:text="${{productUnit}}">Types</label>
+    </div>
+    <br/>
     <div th:each="supplier : ${suppliers}">
         Product supplier:<input type="radio" name="supplierId" th:id="${supplier}" th:value="${supplier.id}"/>
         <label th:for="${supplier}" th:text="${supplier.name}">Supplier</label>
     </div>
-
-
-    <br/>
-    <div th:each="productUnit : ${T(com.purchasingcooperative.purchasingCooperative.product.ProductUnit).values()}">
-    product unit:<input type="radio" name="productUnit" th:id="${{productUnit}}" th:value="${{productUnit}}" />
-    <label th:for="${{productUnit}}" th:text="${{productUnit}}">Types</label>
-    </div>
+    
     <br/>
     <input type="submit" value="Add new product">
 </form>

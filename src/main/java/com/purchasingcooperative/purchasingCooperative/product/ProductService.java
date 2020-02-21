@@ -32,7 +32,9 @@ public class ProductService {
                 .map(it -> ProductEntity.builder()
                         .id(it.getId())
                         .name(it.getName())
+                        .price(it.getPrice())
                         .productUnit(it.getProductUnit())
+                        .supplier(it.getSupplier())
                         .build())
                 .collect(Collectors.toList());
     }

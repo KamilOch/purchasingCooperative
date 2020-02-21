@@ -13,12 +13,12 @@ import java.math.BigDecimal;
 @Controller
 public class ProductController {
 
-    private final ProductService service;
+    private final ProductService productService;
     private final SupplierService supplierService;
 
     @Autowired
-    public ProductController(ProductService service, SupplierService supplierService) {
-        this.service = service;
+    public ProductController(ProductService productService, SupplierService supplierService) {
+        this.productService = productService;
         this.supplierService = supplierService;
     }
 
@@ -33,7 +33,7 @@ public class ProductController {
     ) {
         model.addAttribute("suppliers", supplierService.getAllSuppliers());
         if (name != null && productUnit != null) {
-            service.addProduct(name, productUnit, supplierId, price);
+            productService.addProduct(name, productUnit, supplierId, price);
         }
         return "addingProduct";
     }
@@ -42,7 +42,7 @@ public class ProductController {
     public String products(
             Model model
     ) {
-        model.addAttribute("products", service.getAllProducts());
+        model.addAttribute("products", productService.getAllProducts());
         return "products";
     }
 
@@ -50,7 +50,7 @@ public class ProductController {
     public String deleteProductById(
             @PathVariable long id
     ) {
-        service.deleteProduct(id);
+        productService.deleteProduct(id);
         return "redirect:/products";
     }
 
@@ -59,7 +59,7 @@ public class ProductController {
             @PathVariable long id,
             Model model
     ) {
-        model.addAttribute("product", service.findById(id));
+        model.addAttribute("product", productService.findById(id));
         return "editingProduct";
     }
 
@@ -69,7 +69,7 @@ public class ProductController {
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "productUnit", required = false) ProductUnit productUnit
     ) {
-        service.editProduct(id, name, productUnit);
+        productService.editProduct(id, name, productUnit);
         return "redirect:/products";
     }
 }
