@@ -23,7 +23,7 @@ public class SupplierService {
 
     public List<SupplierEntity> getAllSuppliers() {
         return repository.findAll().stream().map(it ->
-                SupplierEntity.builder().id(it.getId()).name(it.getName()).build()).collect(Collectors.toList());
+                SupplierEntity.builder().id(it.getId()).name(it.getName()).products(it.getProducts()).build()).collect(Collectors.toList());
     }
 
     public SupplierEntity findById(long id) {
