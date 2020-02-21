@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BasketController {
@@ -36,5 +37,13 @@ public class BasketController {
         return "addingToBasket";
     }
 
+    @GetMapping("/putProductToBasket")
+    public String putProductToBasket(
+            @RequestParam(value = "id", required = false) long id,
+            @RequestParam(value = "quantity", required = false) double quantity
+    ){
+        basketService.addToBasketProductAndQuantity(id,quantity);
+        return "redirect:/showProducts";
+    }
 
 }
