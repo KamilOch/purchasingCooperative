@@ -26,7 +26,10 @@
         <td><span th:text="${element.priceForOneProduct()}">price sum</span></td>
 
         <td>
-
+            <form th:action="@{/deleteProductFromBasket/{id}(id=${element.productEntity.id})}" th:object="${element}">
+                <input type="hidden" field="${element}">
+                <input type="submit" value="Delete">
+            </form>
         </td>
 
     </tr>

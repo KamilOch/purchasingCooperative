@@ -55,4 +55,13 @@ public class BasketController {
         return "showBasket";
     }
 
+    @GetMapping("/deleteProductFromBasket/{id}")
+    public String deleteProductFromBasketById (
+
+            @PathVariable long id
+    ){
+        basketService.removeFromBasketProduct(id);
+        return "redirect:/showBasket";
+    }
+
 }

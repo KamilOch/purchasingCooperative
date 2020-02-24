@@ -41,7 +41,4 @@ public class BasketService {
         return basket.basketSum();
     }
 
-//    public BigDecimal priceForOneProduct(ProductAndQuantity productAndQuantity){
-//        return basket.priceForOneProduct(productAndQuantity);
-//    }
 }

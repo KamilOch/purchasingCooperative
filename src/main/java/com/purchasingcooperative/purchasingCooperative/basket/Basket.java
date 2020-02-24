@@ -1,7 +1,6 @@
 package com.purchasingcooperative.purchasingCooperative.basket;
 
 import com.purchasingcooperative.purchasingCooperative.product.ProductEntity;
-import com.purchasingcooperative.purchasingCooperative.product.ProductUnit;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -18,7 +17,18 @@ public class Basket {
     }
 
     public void addToBasketProductAndQuantity(ProductEntity productEntity, double quantity) {
-        basketList.add(new ProductAndQuantity(productEntity, quantity));
+        boolean found = false;
+
+        for (int i = 0; i < basketList.size(); i++) {
+            if (basketList.get(i).getProductEntity().getId() == productEntity.getId()) {
+                basketList.get(i).setQuantity(basketList.get(i).getQuantity() + quantity);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            basketList.add(new ProductAndQuantity(productEntity, quantity));
+        }
     }
 
     public void removeFromBasketProduct(long productId) {
