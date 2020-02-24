@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Basket</title>
+</head>
+<body>
+
+<h1>Your basket</h1>
+
+<table>
+    <thead>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Unit</th>
+    <th>Quantity</th>
+    <th>Price sum</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="element : ${basket}">
+        <td><span th:text="${element.productEntity.name}">name</span></td>
+        <td><span th:text="${element.productEntity.price}">price</span></td>
+        <td><span th:text="${element.productEntity.productUnit}">product unit</span></td>
+        <td><span th:text="${element.quantity}">quantity</span></td>
+        <td><span th:text="${element.priceForOneProduct()}">price sum</span></td>
+
+        <td>
+
+        </td>
+
+    </tr>
+    </tbody>
+
+</table>
+
+<h2>Total costs:</h2>
+<p><span th:text="${total}">total costs</span></p>
+
+<br/>
+<form action="/showProducts">
+    <input type="submit" value="Go to products list">
+</form>
+
+<br/>
+<form action="/">
+    <input type="submit" value="Go to start page">
+</form>
+
+
+</body>
+</html>

@@ -33,7 +33,7 @@ public class BasketController {
             @PathVariable long id,
             Model model
     ) {
-        model.addAttribute("product", productService.findById(id) );
+        model.addAttribute("product", productService.findById(id));
         return "addingToBasket";
     }
 
@@ -41,9 +41,18 @@ public class BasketController {
     public String putProductToBasket(
             @RequestParam(value = "id", required = false) long id,
             @RequestParam(value = "quantity", required = false) double quantity
-    ){
-        basketService.addToBasketProductAndQuantity(id,quantity);
+    ) {
+        basketService.addToBasketProductAndQuantity(id, quantity);
         return "redirect:/showProducts";
+    }
+
+    @GetMapping("/showBasket")
+    public String showBasket(
+            Model model
+    ) {
+        model.addAttribute("basket", basketService.getBasketList());
+        model.addAttribute("total", basketService.basketSum());
+        return "showBasket";
     }
 
 }

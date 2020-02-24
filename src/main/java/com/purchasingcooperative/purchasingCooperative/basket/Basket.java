@@ -46,12 +46,6 @@ public class Basket {
 
             BigDecimal price = product.getProductEntity().getPrice();
             double quantity = product.getQuantity();
-            ProductUnit productUnit = product.getProductEntity().getProductUnit();
-
-//            BigDecimal priceProductQuantityUnit = (productUnit == ProductUnit.PIECE) ?
-//                    price.multiply(BigDecimal.valueOf(quantity))
-//                    :
-//                    (price.multiply(BigDecimal.valueOf(quantity)));
 
             BigDecimal priceProductQuantityUnit = price.multiply(BigDecimal.valueOf(quantity));
 
@@ -59,4 +53,6 @@ public class Basket {
         }
         return sum;
     }
+
+
 }

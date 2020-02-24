@@ -31,16 +31,13 @@
             </form>
         </td>
 
-<!--        <td>-->
-<!--            <form th:action="@{/deleteProduct/{id}(id=${product.id})}" th:object="${product}">-->
-<!--                <input type="hidden" field="${product}">-->
-<!--                <input type="submit" value="Delete">-->
-<!--            </form>-->
-<!--        </td>-->
-
     </tr>
     </tbody>
 </table>
+<br/>
+<form action="/showBasket">
+    <input type="submit" value="Go to your basket">
+</form>
 
 <br/>
 <form action="/">
