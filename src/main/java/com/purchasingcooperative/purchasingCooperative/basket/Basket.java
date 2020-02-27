@@ -19,9 +19,9 @@ public class Basket {
     public void addToBasketProductAndQuantity(ProductEntity productEntity, double quantity) {
         boolean found = false;
 
-        for (int i = 0; i < basketList.size(); i++) {
-            if (basketList.get(i).getProductEntity().getId() == productEntity.getId()) {
-                basketList.get(i).setQuantity(basketList.get(i).getQuantity() + quantity);
+        for (ProductAndQuantity productAndQuantity : basketList) {
+            if (productAndQuantity.getProductEntity().getId() == productEntity.getId()) {
+                productAndQuantity.setQuantity(productAndQuantity.getQuantity() + quantity);
                 found = true;
                 break;
             }
@@ -45,8 +45,7 @@ public class Basket {
     }
 
     public List<ProductAndQuantity> getBasketList() {
-        List<ProductAndQuantity> basketCopyList = new ArrayList<>(basketList);
-        return basketCopyList;
+        return new ArrayList<>(basketList);
     }
 
     public BigDecimal basketSum() {

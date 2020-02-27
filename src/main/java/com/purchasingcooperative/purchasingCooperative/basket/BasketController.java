@@ -56,11 +56,21 @@ public class BasketController {
     }
 
     @GetMapping("/deleteProductFromBasket/{id}")
-    public String deleteProductFromBasketById (
-
+    public String deleteProductFromBasketById(
             @PathVariable long id
-    ){
+    ) {
         basketService.removeFromBasketProduct(id);
+        return "redirect:/showBasket";
+    }
+
+    @GetMapping("/editQuantity/{id}")
+    public String editQuantity(
+            @PathVariable long id,
+            @RequestParam(value = "newQuantity", required = false) Double newQuantity
+    ) {
+        if (null != newQuantity){
+            basketService.changeQuantity(id, newQuantity);
+        }
         return "redirect:/showBasket";
     }
 

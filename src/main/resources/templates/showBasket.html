@@ -25,6 +25,18 @@
         <td><span th:text="${element.quantity}">quantity</span></td>
         <td><span th:text="${element.priceForOneProduct()}">price sum</span></td>
 
+<!--        TODO-->
+
+        <td>
+            <form th:action="@{/editQuantity/{id}/(id=${element.productEntity.id})}" th:object="${element}">
+                New quantity:<input id="newQuantity" name="newQuantity">
+                <input type="hidden" field="${element}">
+                <input type="submit" value="Edit Quantity">
+            </form>
+        </td>
+
+
+
         <td>
             <form th:action="@{/deleteProductFromBasket/{id}(id=${element.productEntity.id})}" th:object="${element}">
                 <input type="hidden" field="${element}">
