@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Customers</title>
+</head>
+<body>
+
+<h1>Customers</h1>
+
+<table>
+    <thead>
+    <th>Email</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="customer : ${customers}">
+        <td><span th:text="${customer.email}">email</span></td>
+
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<form action="/">
+    <input type="submit" value="Go to start page">
+</form>
+<br/>
+<form action="/addCustomer">
+    <input type="submit" value="Add new customer">
+</form>
+
+
+</body>
+</html>
