@@ -25,7 +25,6 @@
         <td><span th:text="${element.quantity}">quantity</span></td>
         <td><span th:text="${element.priceForOneProduct()}">price sum</span></td>
 
-<!--        TODO-->
 
         <td>
             <form th:action="@{/editQuantity/{id}/(id=${element.productEntity.id})}" th:object="${element}">
