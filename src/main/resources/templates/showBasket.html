@@ -8,6 +8,9 @@
 
 <h1>Your basket</h1>
 
+<input type="hidden" th:value="${customer.id}" name="customerId"/>
+<p>Welcome customer:</p> <p th:text="${customer.email}">customer id</p>
+
 <table>
     <thead>
     <th>Name</th>

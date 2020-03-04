@@ -32,4 +32,8 @@ private final CustomersEntityRepository repository;
                         .build())
                 .collect(Collectors.toList());
     }
+
+    public CustomerEntity getCustomerById(long id) {
+        return repository.findById(id).orElseThrow(IllegalArgumentException::new);
+    }
 }

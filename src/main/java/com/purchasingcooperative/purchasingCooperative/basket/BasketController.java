@@ -1,5 +1,6 @@
 package com.purchasingcooperative.purchasingCooperative.basket;
 
+import com.purchasingcooperative.purchasingCooperative.customer.CustomerService;
 import com.purchasingcooperative.purchasingCooperative.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,31 +9,51 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.xml.bind.SchemaOutputResolver;
+
 @Controller
 public class BasketController {
 
     private final BasketService basketService;
     private final ProductService productService;
+    private final CustomerService customerService;
 
     @Autowired
-    public BasketController(BasketService basketService, ProductService productService) {
+    public BasketController(BasketService basketService, ProductService productService, CustomerService customerService) {
         this.basketService = basketService;
         this.productService = productService;
+        this.customerService = customerService;
     }
 
     @GetMapping("/showProducts")
-    public String showProducts(
+    public String showProductsById(
+            // @RequestParam(value = "id", required = false) long customerId,
             Model model
     ) {
+        //TODO
+        long customerId = 1;
+
+        model.addAttribute("customer", customerService.getCustomerById(customerId));
         model.addAttribute("showProducts", productService.getAllProducts());
         return "showProducts";
     }
 
+//    @GetMapping("/showProducts")
+//    public String showProducts(
+//            Model model
+//    ) {
+//        model.addAttribute("showProducts", productService.getAllProducts());
+//        return "showProducts";
+//    }
+
     @GetMapping("/addToBasket/{id}")
     public String addToBasket(
+//            @RequestParam("customerId") long customerId,
+            @RequestParam(value = "customerId", required = false) long customerId,
             @PathVariable long id,
             Model model
     ) {
+        model.addAttribute("customer", customerService.getCustomerById(customerId));
         model.addAttribute("product", productService.findById(id));
         return "addingToBasket";
     }
@@ -48,8 +69,10 @@ public class BasketController {
 
     @GetMapping("/showBasket")
     public String showBasket(
+            @RequestParam(value = "customerId", required = false) long customerId,
             Model model
     ) {
+        model.addAttribute("customer", customerService.getCustomerById(customerId));
         model.addAttribute("basket", basketService.getBasketList());
         model.addAttribute("total", basketService.basketSum());
         return "showBasket";
@@ -68,7 +91,7 @@ public class BasketController {
             @PathVariable long id,
             @RequestParam(value = "newQuantity", required = false) Double newQuantity
     ) {
-        if (null != newQuantity){
+        if (null != newQuantity) {
             basketService.changeQuantity(id, newQuantity);
         }
         return "redirect:/showBasket";

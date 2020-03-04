@@ -6,6 +6,11 @@
 </head>
 <body>
 <h1> Set quantity of product</h1>
+
+<br/>
+<input type="hidden" th:value="${customer.id}" name="customerId"/>
+<p>Welcome customer:</p> <p th:text="${customer.email}">customer email</p>
+
 <br/>
 <form action="/putProductToBasket">
     <input type="hidden" name="id" th:value="${product.id}">
