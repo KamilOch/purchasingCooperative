@@ -8,7 +8,7 @@
 
 <h1>Products to buy</h1>
 
-<input type="hidden" th:value="${customer.id}" name="customerId"/>
+
 <p>Welcome customer:</p> <p th:text="${customer.email}">customer email</p>
 
 <table>
@@ -29,7 +29,8 @@
 
         <td>
             <form th:action="@{/addToBasket/{id}(id=${product.id})}" th:object="${product}">
-                <input type="hidden" field="${product}">
+                <input type="hidden" th:value="${customer.id}" name="customerId"/>
+<!--                <input type="hidden" field="${product}">-->
                 <input type="submit" value="Add to basket // Buy // Order">
             </form>
         </td>

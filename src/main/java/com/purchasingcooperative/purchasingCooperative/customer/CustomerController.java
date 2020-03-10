@@ -1,10 +1,13 @@
 package com.purchasingcooperative.purchasingCooperative.customer;
 
+import com.purchasingcooperative.purchasingCooperative.basket.Basket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class CustomerController {
@@ -33,4 +36,23 @@ public class CustomerController {
         model.addAttribute("customers", service.getAllCustomers());
         return "customers";
     }
+
+
+
+
+    @GetMapping("/login")
+    public String login(
+            Model model,
+           // Long customerId,
+            @RequestParam(value = "customerId", required = false) long customerId,
+            HttpServletRequest req
+    ) {
+        req.getSession().invalidate();
+       // service.getCustomerById(customerId);
+        req.getSession().setAttribute("user", customerId);
+        req.getSession().setAttribute("basket", new Basket());
+        model.addAttribute("customers", service.getAllCustomers());
+        return "customers";
+    }
+
 }

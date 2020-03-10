@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class SupplierController {
 
@@ -29,8 +31,12 @@ public class SupplierController {
 
     @GetMapping("/suppliers")
     public String suppliers(
-            Model model
+            Model model,
+            HttpServletRequest req
     ) {
+        Object dupa = req.getSession().getAttribute("dupa");
+        model.addAttribute("slowik", dupa);
+        model.addAttribute("wrobel", req.getSession().getAttribute("k"));
         model.addAttribute("suppliers", service.getAllSuppliers());
         return "suppliers";
     }

@@ -17,6 +17,14 @@
     <tr th:each="customer : ${customers}">
         <td><span th:text="${customer.email}">email</span></td>
 
+        <td>
+            <form th:action="@{/login}" th:object="${customer}">
+                <input type="hidden" th:value="${customer.id}" name="customerId">
+                <input type="submit" value="Login">
+            </form>
+        </td>
+
+
     </tr>
     </tbody>
 </table>
