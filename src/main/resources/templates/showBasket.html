@@ -8,7 +8,7 @@
 
 <h1>Your basket</h1>
 
-<input type="hidden" th:value="${customer.id}" name="customerId"/>
+
 <p>Welcome customer:</p> <p th:text="${customer.email}">customer id</p>
 
 <table>
@@ -31,6 +31,7 @@
 
         <td>
             <form th:action="@{/editQuantity/{id}/(id=${element.productEntity.id})}" th:object="${element}">
+                <input type="hidden" th:value="${customer.id}" name="customerId"/>
                 New quantity:<input id="newQuantity" name="newQuantity">
                 <input type="hidden" field="${element}">
                 <input type="submit" value="Edit Quantity">
@@ -41,6 +42,7 @@
 
         <td>
             <form th:action="@{/deleteProductFromBasket/{id}(id=${element.productEntity.id})}" th:object="${element}">
+                <input type="hidden" th:value="${customer.id}" name="customerId"/>
                 <input type="hidden" field="${element}">
                 <input type="submit" value="Delete">
             </form>

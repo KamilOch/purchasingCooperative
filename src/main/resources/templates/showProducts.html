@@ -30,7 +30,6 @@
         <td>
             <form th:action="@{/addToBasket/{id}(id=${product.id})}" th:object="${product}">
                 <input type="hidden" th:value="${customer.id}" name="customerId"/>
-<!--                <input type="hidden" field="${product}">-->
                 <input type="submit" value="Add to basket // Buy // Order">
             </form>
         </td>

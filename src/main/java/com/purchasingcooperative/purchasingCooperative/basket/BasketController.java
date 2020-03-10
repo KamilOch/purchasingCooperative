@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.bind.SchemaOutputResolver;
 
 @Controller
 public class BasketController {
@@ -29,38 +28,21 @@ public class BasketController {
 
     @GetMapping("/showProducts")
     public String showProductsById(
-            // @RequestParam(value = "id", required = false) long customerId,
             Model model,
             HttpServletRequest httpServletRequest
-            //,
-//            @RequestParam String dupa,
-//            @RequestParam String kupa
+
 
     ) {
 
         HttpSession session = httpServletRequest.getSession();
-//        session.setAttribute("dupa", dupa);
-//        session.setAttribute("k", kupa);
-        //TODO
-       // long customerId = 1;
 
-       // model.addAttribute("customer", customerService.getCustomerById(customerId));
         model.addAttribute("customer", customerService.getCustomerById((Long)session.getAttribute("user")));
         model.addAttribute("showProducts", productService.getAllProducts());
         return "showProducts";
     }
 
-//    @GetMapping("/showProducts")
-//    public String showProducts(
-//            Model model
-//    ) {
-//        model.addAttribute("showProducts", productService.getAllProducts());
-//        return "showProducts";
-//    }
-
     @GetMapping("/addToBasket/{id}")
     public String addToBasket(
-//            @RequestParam("customerId") long customerId,
             @RequestParam(value = "customerId", required = false) long customerId,
             @PathVariable long id,
             Model model
@@ -81,10 +63,13 @@ public class BasketController {
 
     @GetMapping("/showBasket")
     public String showBasket(
-            @RequestParam(value = "customerId", required = false) long customerId,
+            HttpServletRequest httpServletRequest,
             Model model
     ) {
-        model.addAttribute("customer", customerService.getCustomerById(customerId));
+
+        HttpSession session = httpServletRequest.getSession();
+
+        model.addAttribute("customer", customerService.getCustomerById((Long)session.getAttribute("user")));
         model.addAttribute("basket", basketService.getBasketList());
         model.addAttribute("total", basketService.basketSum());
         return "showBasket";

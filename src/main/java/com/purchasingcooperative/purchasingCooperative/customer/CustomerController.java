@@ -37,18 +37,13 @@ public class CustomerController {
         return "customers";
     }
 
-
-
-
     @GetMapping("/login")
     public String login(
             Model model,
-           // Long customerId,
             @RequestParam(value = "customerId", required = false) long customerId,
             HttpServletRequest req
     ) {
         req.getSession().invalidate();
-       // service.getCustomerById(customerId);
         req.getSession().setAttribute("user", customerId);
         req.getSession().setAttribute("basket", new Basket());
         model.addAttribute("customers", service.getAllCustomers());

@@ -34,9 +34,6 @@ public class SupplierController {
             Model model,
             HttpServletRequest req
     ) {
-        Object dupa = req.getSession().getAttribute("dupa");
-        model.addAttribute("slowik", dupa);
-        model.addAttribute("wrobel", req.getSession().getAttribute("k"));
         model.addAttribute("suppliers", service.getAllSuppliers());
         return "suppliers";
     }

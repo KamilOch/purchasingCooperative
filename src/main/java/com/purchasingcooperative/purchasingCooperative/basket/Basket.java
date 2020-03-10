@@ -11,7 +11,6 @@ import java.util.List;
 public class Basket {
 
     private List<ProductAndQuantity> basketList;
-    private long customerId;
 
     public Basket() {
         basketList = new ArrayList<>();
