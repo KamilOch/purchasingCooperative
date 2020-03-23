@@ -4,16 +4,16 @@ import com.purchasingcooperative.purchasingCooperative.product.ProductEntity;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class Basket {
 
-    private List<ProductAndQuantity> basketList;
+    private Set<ProductAndQuantity> basketList;
 
     public Basket() {
-        basketList = new ArrayList<>();
+        basketList = new HashSet<>();
     }
 
     public void addToBasketProductAndQuantity(ProductEntity productEntity, double quantity) {
@@ -44,8 +44,8 @@ public class Basket {
         }
     }
 
-    public List<ProductAndQuantity> getBasketList() {
-        return new ArrayList<>(basketList);
+    public Set<ProductAndQuantity> getBasketList() {
+        return new HashSet<>(basketList);
     }
 
     public BigDecimal basketSum() {
